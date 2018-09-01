@@ -35,7 +35,7 @@ void getnext(Str a, int next[]){
             ++j;
             next[i] = j + 1;        
         }else{
-            j = next[j] - 1;
+            j = next[j] -1;
         }
     }
 }

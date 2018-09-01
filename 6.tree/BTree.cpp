@@ -3,6 +3,8 @@
 #include<stdio.h>
 using namespace std;
 
+#define MaxSize 100
+
 typedef struct BTNode
 {
 	char data;
@@ -73,5 +75,30 @@ int getDeepth(BTNode *p){
 		deepR = getDeepth(p->rchild);
 		return (deepL > deepR ? deepL : deepR) + 1;
 	}
+}
 
+//cengci bianli
+//p is the root node
+void level(BTNode *p){
+	int front, rear;
+	BTNode *que[MaxSize];
+	BTNode *q;
+	front = rear = 0;
+	if(p != NULL){
+		que[rear++] = p;
+		while(front != rear){
+			q = que[front++];
+			Visit(q);
+			if(q -> lchild != NULL){
+				que[rear++] = q -> lchild;
+			}
+			if(q -> rchild != NULL){
+				que[rear++] = q -> rchild;
+			}
+		}
+	}
+}
+
+int main(){
+	return 0;
 }
