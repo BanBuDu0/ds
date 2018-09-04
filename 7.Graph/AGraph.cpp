@@ -6,6 +6,7 @@ using namespace std;
 #define MaxNum 0x7fffffff
 
 int visit[MaxSize]; //the visit array used in bfs, storage the visited node
+int visit_DFS[MaxSize]; //the visit array used in dfs, storage the visited node
 
 
 // arcnode : 弧形节点
@@ -76,8 +77,30 @@ void BFSTraverse(Graph g){
 }
 
 
+void DFS(Graph g, int v){
+	Visit(g, v);
+	visit_DFS[i] = 1;
+	for(int i = FirstNeighbor(g, v); i >= 0; i = NextNeighbor(g, i)){
+		if(visit[i] == 0){
+			DFS(g, i);
+		}
+	}
+}
+
+void DFSTraverse(Graph g){
+	for(int i = 0; i < g.n; ++i){
+		visit_DFS[i] = 0;
+	}
+	for(int i = 0; i < g.n; ++i){
+		if(visit_DFS[i] == 0){
+			DFS(g, i);
+		}
+	}
+}
+
+
 
 int main(){
-    p = g.adjlist[3].firstarc->nextarc;//只有他爸是指针的时候才用 ->
+    // p = g.adjlist[3].firstarc->nextarc;//只有他爸是指针的时候才用 ->
     return 0;
 }
